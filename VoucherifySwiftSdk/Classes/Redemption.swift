@@ -1,8 +1,7 @@
-import Foundation
 import Alamofire
+import Foundation
 
 public class Redeemption {
-
     private let httpClient: VoucherifyHttpClient
 
     public init(httpClient: VoucherifyHttpClient) {
@@ -10,20 +9,20 @@ public class Redeemption {
     }
 
     /**
-       Increments redemption counter and updates history of the voucher
-       - parameter code: Voucher's code which we want to redeem
-       - parameter completion: response callback function
-       */
+     Increments redemption counter and updates history of the voucher
+     - parameter code: Voucher's code which we want to redeem
+     - parameter completion: response callback function
+     */
     public func redeem(code: String,
                        redeemContext: VoucherRedemptionContext? = nil,
-                       completion: @escaping (_ response: Result<VoucherRedemptionResult>) -> Void) {
+                       completion: @escaping (_ response: Result<VoucherRedemptionResult>) -> Void)
+    {
         var params = httpClient.getBaseQueryParams()
 
         params[HttpQueryParamName.code] = code as AnyObject?
 
-        httpClient.request(requestUrl: VoucherifyRouter.redeemVoucher(params, redeemContext) as URLRequestConvertible) { (response) in
+        httpClient.request(requestUrl: VoucherifyRouter.redeemVoucher(params, redeemContext) as URLRequestConvertible) { response in
             completion(self.httpClient.handleJsonResponse(response: response))
         }
     }
-
 }

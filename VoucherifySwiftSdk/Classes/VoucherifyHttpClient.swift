@@ -1,9 +1,8 @@
-import UIKit
 import Alamofire
 import ObjectMapper
+import UIKit
 
 public class VoucherifyHttpClient {
-
     /// Alamofire's manager to perform HTTP calls
     fileprivate let manager: Alamofire.SessionManager
 
@@ -12,7 +11,7 @@ public class VoucherifyHttpClient {
     fileprivate let trackingId: String
 
     internal init(sessionManager: Alamofire.SessionManager, configuration: Configuration, trackingId: String) {
-        self.manager = sessionManager
+        manager = sessionManager
         self.configuration = configuration
         self.trackingId = trackingId
     }
@@ -26,7 +25,7 @@ public class VoucherifyHttpClient {
     internal func getBaseQueryParams() -> [String: AnyObject] {
         var params = [String: AnyObject]()
 
-        params[HttpQueryParamName.trackingId] = self.trackingId as AnyObject?
+        params[HttpQueryParamName.trackingId] = trackingId as AnyObject?
         params[HttpQueryParamName.channel] = configuration.userAgentClient as AnyObject?
 
         return params
@@ -38,7 +37,8 @@ public class VoucherifyHttpClient {
         }
 
         let json: AnyObject? = try! JSONSerialization.jsonObject(
-                with: (response.data! as NSData) as Data, options: []) as AnyObject?
+            with: (response.data! as NSData) as Data, options: []
+        ) as AnyObject?
 
         if let errorJson = json {
             let error = Mapper<GeneralError>().map(JSONObject: errorJson)
@@ -54,7 +54,5 @@ public class VoucherifyHttpClient {
         }
 
         return Result<T>.success(data!)
-
     }
-
 }

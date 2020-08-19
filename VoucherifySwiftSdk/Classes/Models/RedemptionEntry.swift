@@ -5,7 +5,6 @@ import ObjectMapper
  * I hold a history information about voucher redemption
  */
 public struct RedemptionEntry: Mappable {
-
     /// An identifier for entity
     public var id: String?
 
@@ -28,20 +27,20 @@ public struct RedemptionEntry: Mappable {
     public var reason: String?
 
     /// Metadata - whatever you
-    public var metadata: Dictionary<String, AnyObject>?
+    public var metadata: [String: AnyObject]?
 
     public init?(map: Map) {
         mapping(map: map)
     }
 
-    mutating public func mapping(map: Map) {
-        id          <- map["id"]
-        date        <- (map["date"], DateTransform())
-        object      <- map["object"]
-        customerId  <- map["customer_id"]
-        trackingId  <- map["tracking_id"]
-        redemption  <- map["redemption"]
-        reason      <- map["reason"]
-        metadata    <- map["metadata"]
+    public mutating func mapping(map: Map) {
+        id <- map["id"]
+        date <- (map["date"], DateTransform())
+        object <- map["object"]
+        customerId <- map["customer_id"]
+        trackingId <- map["tracking_id"]
+        redemption <- map["redemption"]
+        reason <- map["reason"]
+        metadata <- map["metadata"]
     }
 }

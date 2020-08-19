@@ -1,7 +1,6 @@
 import Foundation
 
 public class VoucherModule {
-
     private let validation: Validation
     private let redeemption: Redeemption
 
@@ -17,5 +16,4 @@ public class VoucherModule {
     public func redeemptions() -> Redeemption {
         return redeemption
     }
-
 }

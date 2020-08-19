@@ -27,21 +27,21 @@ public struct VoucherRedemptionResult: Mappable {
     public var voucher: Voucher?
 
     /// Metadata - whatever you
-    public var metadata: Dictionary<String, AnyObject>?
+    public var metadata: [String: AnyObject]?
 
     public init?(map: Map) {
         mapping(map: map)
     }
 
-    mutating public func mapping(map: Map) {
-        id          <- map["id"]
-        date        <- (map["date"], DateTransform())
-        object      <- map["object"]
-        customerId  <- map["customer_id"]
-        trackingId  <- map["tracking_id"]
-        redemption  <- map["redemption"]
-        reason      <- map["reason"]
-        voucher     <- map["voucher"]
-        metadata    <- map["metadata"]
+    public mutating func mapping(map: Map) {
+        id <- map["id"]
+        date <- (map["date"], DateTransform())
+        object <- map["object"]
+        customerId <- map["customer_id"]
+        trackingId <- map["tracking_id"]
+        redemption <- map["redemption"]
+        reason <- map["reason"]
+        voucher <- map["voucher"]
+        metadata <- map["metadata"]
     }
 }

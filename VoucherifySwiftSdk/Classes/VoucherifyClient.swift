@@ -1,13 +1,12 @@
-import Foundation
 import Alamofire
+import Foundation
 import ObjectMapper
 
 /**
  Voucherify client object for performing voucher request against the Voucherify API
-*/
+ */
 
 public class VoucherifyClient {
-
     /// Client's custom configuration
     private let configuration: Configuration
 
@@ -24,7 +23,8 @@ public class VoucherifyClient {
                 clientToken: String,
                 origin: String = "",
                 trackingId: String = "swift-sdk",
-                configuration: Configuration = Configuration()) {
+                configuration: Configuration = Configuration())
+    {
         self.configuration = configuration
 
         let sessionConfiguration = URLSessionConfiguration.default
@@ -42,17 +42,15 @@ public class VoucherifyClient {
         httpClient = VoucherifyHttpClient(sessionManager: manager, configuration: configuration, trackingId: trackingId)
 
         voucherModule = VoucherModule(
-                validation: Validation(httpClient: httpClient),
-                redeemption: Redeemption(httpClient: httpClient)
+            validation: Validation(httpClient: httpClient),
+            redeemption: Redeemption(httpClient: httpClient)
         )
     }
-
 }
 
-//MARK: Voucher module
+// MARK: Voucher module
 
 extension VoucherifyClient {
-
     public func vouchers() -> VoucherModule {
         return voucherModule
     }

@@ -2,7 +2,6 @@ import Foundation
 import ObjectMapper
 
 public struct PublishEntry: Mappable {
-
     public var customer: String?
     public var channel: String?
 
@@ -12,10 +11,9 @@ public struct PublishEntry: Mappable {
         mapping(map: map)
     }
 
-    mutating public func mapping(map: Map) {
-        customer    <- map["customer"]
-        channel     <- map["channel"]
+    public mutating func mapping(map: Map) {
+        customer <- map["customer"]
+        channel <- map["channel"]
         publishedAt <- (map["published_at"], DateTransform())
     }
-
 }

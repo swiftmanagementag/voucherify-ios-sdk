@@ -21,13 +21,13 @@ public struct Configuration {
         var osName = "iOS"
         let osVersion: AnyObject = ProcessInfo.processInfo.operatingSystemVersionString as AnyObject? ?? "Unknown" as AnyObject
 
-#if os(OSX)
-        osName = "OS X"
-#elseif os(tvOS)
-        osName = "tvOS"
-#elseif os(watchOS)
-        osName = "watchOS"
-#endif
+        #if os(OSX)
+            osName = "OS X"
+        #elseif os(tvOS)
+            osName = "tvOS"
+        #elseif os(watchOS)
+            osName = "watchOS"
+        #endif
 
         return "\(userAgentClient) (\(osName) \(osVersion))"
     }
@@ -36,9 +36,7 @@ public struct Configuration {
      Initialize a configuration with default values
      - returns: An initialized configuration instance
      */
-    public init() {
-    }
-
+    public init() {}
 }
 
 public struct HttpHeader {

@@ -41,27 +41,26 @@ public struct Voucher: Mappable {
     /// Additional voucher's information
     public var additionalInfo: String?
 
-    public var metadata: Dictionary<String, AnyObject>?
+    public var metadata: [String: AnyObject]?
 
     public init?(map: Map) {
-        mapping(map:map)
+        mapping(map: map)
     }
 
-    mutating public func mapping(map: Map) {
-        id              <- map["id"]
-        code            <- map["code"]
-        type            <- map["type"]
-        campaign        <- map["campaign"]
-        category        <- map["category"]
-        discount        <- map["discount"]
-        gift            <- map["gift"]
-        startDate       <- (map["start_date"], DateTransform())
-        expirationDate  <- (map["expiration_date"], DateTransform())
-        active          <- map["active"]
-        publish         <- map["publish"]
-        redemption      <- map["redemption"]
-        additionalInfo  <- map["additional_info"]
-        metadata        <- map["metadata"]
+    public mutating func mapping(map: Map) {
+        id <- map["id"]
+        code <- map["code"]
+        type <- map["type"]
+        campaign <- map["campaign"]
+        category <- map["category"]
+        discount <- map["discount"]
+        gift <- map["gift"]
+        startDate <- (map["start_date"], DateTransform())
+        expirationDate <- (map["expiration_date"], DateTransform())
+        active <- map["active"]
+        publish <- map["publish"]
+        redemption <- map["redemption"]
+        additionalInfo <- map["additional_info"]
+        metadata <- map["metadata"]
     }
 }
-
